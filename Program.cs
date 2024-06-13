@@ -7,6 +7,7 @@ namespace Gestor_de_Tareas
 	class Fabrizio
 	{
 		static Dictionary<Fecha, Tarea> gestor = new Dictionary<Fecha, Tarea>();
+		static int contadorTareas = 1;
 
 		public class Fecha
 		{
@@ -83,14 +84,15 @@ namespace Gestor_de_Tareas
 					VerTareas();
 					break;
 				default:
-					Console.WriteLine("Cerrando Programa...");
+					Console.WriteLine("\nCerrando Programa...");
 					return;
 			}
 		}
 
 		static void AgregarTarea()
 		{
-			Console.Write("\nIngrese día, mes y año de su Tarea separados por espacios: ");
+			Console.Clear();
+			Console.Write("Ingrese día, mes y año de su Tarea separados por espacios: ");
 			string entrada = Console.ReadLine();
 			string[] inputFecha = entrada.Split(' ');
 
@@ -106,14 +108,17 @@ namespace Gestor_de_Tareas
 
 			gestor.Add(fecha, tarea);
 
-			Console.WriteLine($"\nLa tarea fue agregada con éxito, Número de Tarea: {numTarea}");
+			Console.WriteLine($"\nLa tarea fue agregada con éxito, Número de Tarea: {contadorTareas}");
+
+			contadorTareas++;
 
 			volver();
 		}
 
 		static void EliminarTarea()
 		{
-			Console.Write("\nIngrese el número de la tarea que desea eliminar: ");
+			Console.Clear();
+			Console.Write("Ingrese el número de la tarea que desea eliminar: ");
 			int numTareaEliminar = int.Parse(Console.ReadLine());
 
 			// Obtener la tarea seleccionada
@@ -122,19 +127,22 @@ namespace Gestor_de_Tareas
 			//Eliminar Tarea
 			gestor.Remove(tareaEliminar.Fecha);
 			Console.WriteLine("\nTarea eliminada con éxito.");
+			contadorTareas--;
 
 			volver();
 		}
 
 		static void EditarTarea()
 		{
+			Console.Clear();
 			if (gestor.Count == 0)
 			{
-				Console.WriteLine("\nNo hay tareas para Editar.");
+				Console.WriteLine("No hay tareas para Editar.");
 				volver();
+				return;
 			}
 
-			Console.Write("\nElija el número de la tarea que desea editar: ");
+			Console.Write("Elija el número de la tarea que desea editar: ");
 			if (int.TryParse(Console.ReadLine(), out int numtareaEditar) && numTarea > 0 && numTarea <= gestor.Count)
 			{
 				var tareaEditar = gestor.ElementAt(numtareaEditar - 1); //Obtiene el par clave-valor en la posición específicada
@@ -177,15 +185,18 @@ namespace Gestor_de_Tareas
 
 		static void VerTareas()
 		{
+			Console.Clear();
+			int numTarea = 1;
+
 			foreach (var ver in gestor)
 			{
-				Console.WriteLine($"\n{numTarea}- Fecha: {ver.Key.Día}/{ver.Key.Mes}/{ver.Key.Año}          Tarea: {ver.Value.Descripción}");
+				Console.WriteLine($"{numTarea}- Fecha: {ver.Key.Día}/{ver.Key.Mes}/{ver.Key.Año}          Tarea: {ver.Value.Descripción}");
 				numTarea++;
 			}
 
 			if (gestor.Count == 0)
 			{
-				Console.WriteLine("\nNo hay tareas registradas.");
+				Console.WriteLine("No hay tareas registradas.");
 			}
 
 			volver();
