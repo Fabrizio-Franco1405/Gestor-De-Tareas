@@ -1,9 +1,9 @@
 # Agenda de Contactos
 # 
 # Descripción
-# 
+
 Este proyecto es una aplicación de gestor de tareas desarrollada en C#. Utiliza diccionarios para manejar las tareas, permitiendo al usuario agregar, actualizar, eliminar y visualizar tareas fácilmente. La aplicación está diseñada para ser simple y eficiente, proporcionando una manera efectiva de gestionar las tareas diarias.
-# 
+
 # Características
 
 Agregar Tareas: Permite al usuario agregar nuevas tareas con detalles específicos.
