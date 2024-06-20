@@ -1,4 +1,4 @@
-Gestor de Tareas en C#
+Agenda de Contactos
 
 Descripción
 
